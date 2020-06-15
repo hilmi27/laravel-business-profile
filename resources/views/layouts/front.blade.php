@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>BWXINDO - BUSINESS PROJECT</title>
+  <title>{{ $general->title }}</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -42,7 +42,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo"><a href="{{ route('home') }}">Sailor</a></h1>
+      <h1 class="logo"><a href="{{ route('home') }}">{{ $general->name }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -78,19 +78,17 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>Sailor</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+              <h3>{{ $general->name }}</h3>
+              <p>{{ $general->address }}
+                <br><br>
+                <strong>Phone:</strong> {{ $general->phone }}<br>
+                <strong>Email:</strong> {{ $general->email }}<br>
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="{{ $general->twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{ $general->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{ $general->instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="{{ $general->linkedin }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
               </div>
             </div>
           </div>
@@ -119,7 +117,7 @@
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <p>Dapatkan info terbaru mengenai kami dengan berlangganan email</p>
             @if (session('success'))
 
             <div class="alert alert-success">
@@ -157,7 +155,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Sailor</span></strong>. All Rights Reserved
+        &copy; {{ $general->footer }}
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

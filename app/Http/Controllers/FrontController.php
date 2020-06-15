@@ -12,16 +12,27 @@ use App\Faq;
 use App\Subscriber;
 use App\About;
 use App\Message;
+use App\General;
 
 class FrontController extends Controller
 {
+    // protected $general;
+
+    // public function __construct(General $general)
+    // {
+
+    //     $this->general = $general;
+
+    // }
+
     public function home()
     {
         $banner = Banner::all();
         $cover = Banner::first();
         $service = Service::all();
+        $general = General::find(1);
         $client = Client::get()->random(6);
-        return view('front.home',compact('banner','cover','service','client'));
+        return view('front.home',compact('banner','cover','service','client','general'));
     }
 
     public function about()
@@ -29,39 +40,46 @@ class FrontController extends Controller
         $team = Team::all();
         $faq = Faq::all();
         $about = About::find(1);
-        return view('front.about',compact('team','faq','about'));
+        $general = General::find(1);
+        return view('front.about',compact('team','faq','about','general'));
     }
 
     public function service()
     {
         $service = Service::all();
         $feature = Feature::all();
-        return view('front.service',compact('service','feature'));
+        $general = General::find(1);
+        return view('front.service',compact('service','feature','general'));
     }
 
     public function portofolio()
     {
-        return view('front.portofolio');
+        $general = General::find(1);
+        return view('front.portofolio',compact('general'));
     }
 
     public function portofolioshow()
     {
-        return view('front.portofolioshow');
+        $general = General::find(1);
+        return view('front.portofolioshow',compact('general'));
     }
 
     public function blog()
     {
-        return view('front.blog');
+        $general = General::find(1);
+        return view('front.blog',compact('general'));
     }
 
     public function blogshow()
     {
-        return view('front.blogshow');
+        $general = General::find(1);
+        return view('front.blogshow',compact('general'));
     }
 
     public function contact()
     {
-        return view('front.contact');
+        $general = General::find(1);
+        return view('front.contact',compact('general'));
     }
 
     public function subscribe(Request $request)

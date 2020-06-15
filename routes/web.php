@@ -131,4 +131,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
       // Manage Message
       Route::get('message','MessageController@index')->name('admin.message');
 
+
+       // General Settings
+
+     Route::get('general/edit','GeneralController@edit')->name('admin.general.edit');
+ 
+     Route::post('general/edit','GeneralController@update')->name('admin.general.update');
+
 });
