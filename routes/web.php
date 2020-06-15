@@ -25,7 +25,11 @@ Route::get('portofolio/test-portofolio-show','FrontController@portofolioshow')->
 
 Route::get('blog','FrontController@blog')->name('blog');
 
-Route::get('blog/test-detail-blog','FrontController@blogshow')->name('blogshow');
+Route::get('blog/{slug}','FrontController@blogshow')->name('blogshow');
+
+Route::get('categories/{category:slug}','FrontController@category')->name('category');
+
+Route::get('tags/{tag:slug}','FrontController@tag')->name('tag');
 
 Route::get('contact','FrontController@contact')->name('contact');
 

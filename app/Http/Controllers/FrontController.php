@@ -13,6 +13,9 @@ use App\Subscriber;
 use App\About;
 use App\Message;
 use App\General;
+use App\Post;
+use App\Category;
+use App\Tag;
 
 class FrontController extends Controller
 {
@@ -67,13 +70,29 @@ class FrontController extends Controller
     public function blog()
     {
         $general = General::find(1);
-        return view('front.blog',compact('general'));
+        $posts = Post::orderBy('id','desc')->paginate(12);
+        return view('front.blog',compact('general','posts'));
     }
 
-    public function blogshow()
+    public function blogshow($slug)
     {
         $general = General::find(1);
-        return view('front.blogshow',compact('general'));
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('front.blogshow',compact('general','post'));
+    }
+
+    public function category(Category $category)
+    {
+        $general = General::find(1);
+        $posts = $category->posts()->latest()->paginate(12);
+        return view ('front.blog',compact('general','posts','category'));
+    }
+
+    public function tag(Tag $tag)
+    {
+        $general = General::find(1);
+        $posts = $tag->posts()->latest()->paginate(12);
+        return view ('front.blog',compact('general','posts','tag'));
     }
 
     public function contact()
