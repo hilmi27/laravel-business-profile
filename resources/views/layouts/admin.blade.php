@@ -57,6 +57,12 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.message') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Message</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.team') }}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Team</span></a>

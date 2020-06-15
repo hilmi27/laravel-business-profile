@@ -11,6 +11,7 @@ use App\Team;
 use App\Faq;
 use App\Subscriber;
 use App\About;
+use App\Message;
 
 class FrontController extends Controller
 {
@@ -80,5 +81,33 @@ class FrontController extends Controller
             return redirect()->route('home')->with('error', 'You failed to subscribe');
     
            }
+    }
+
+    public function message(Request $request)
+    {
+        \Validator::make($request->all(), [
+            "name" => "required",
+            "email" => "required",
+            "subject" => "required",
+            "body" => "required"         
+        ])->validate();
+
+        $message = new Message();
+        $message->name = $request->name;
+        $message->email = $request->email;
+        $message->subject = $request->subject;
+        $message->body = $request->body;
+
+       $message->save();
+
+       if ( $message->save()) {
+
+        return redirect()->route('contact')->with('sended', 'Your message was successfully sent');
+
+       } else {
+           
+        return redirect()->route('contact')->with('failed', 'Your message failed to send');
+
+       }
     }
 }

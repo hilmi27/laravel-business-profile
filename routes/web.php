@@ -29,6 +29,8 @@ Route::get('blog/test-detail-blog','FrontController@blogshow')->name('blogshow')
 
 Route::get('contact','FrontController@contact')->name('contact');
 
+Route::post('contact','FrontController@message')->name('message');
+
 Route::post('/','FrontController@subscribe')->name('subscribe');
 
 
@@ -125,6 +127,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
      Route::get('about/edit','AboutController@edit')->name('admin.about.edit');
  
      Route::post('about/edit','AboutController@update')->name('admin.about.update');
- 
+
+      // Manage Message
+      Route::get('message','MessageController@index')->name('admin.message');
 
 });
