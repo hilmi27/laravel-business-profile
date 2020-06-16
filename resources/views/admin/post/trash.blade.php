@@ -78,14 +78,18 @@
                 
                         <td>    
                 
-                            <a href="{{route('admin.post.edit', [$post->id])}}" class="btn btn-info btn-sm"> Edit </a>
+                            <form method="POST" action="{{route('admin.post.restore', $post->id)}}" class="d-inline">
+                                @csrf
+                                <input type="submit" value="Restore" class="btn btn-success btn-sm">
+                            </form>
                 
-                            <form method="POST" class="d-inline" onsubmit="return confirm('Move post to trash ?')" action="{{route('admin.post.destroy', $post->id)}}">
+                            <form method="POST" action="{{route('admin.post.deletePermanent', $post->id)}}" class="d-inline" onsubmit="return confirm('Delete this post permanently?')">
+
                                 @csrf
     
-                                <input type="hidden" value="DELETE" name="_method">
+                                <input type="hidden" name="_method" value="DELETE">
     
-                                <input type="submit" value="Trash" class="btn btn-danger btn-sm">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
     
                             </form>
                 

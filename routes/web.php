@@ -46,6 +46,25 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 
     // Manage Blog Tag
+    Route::get('post','PostController@index')->name('admin.post');
+
+    Route::get('post/create','PostController@create')->name('admin.post.create');
+
+    Route::post('post/create','PostController@store')->name('admin.post.store');
+
+    Route::get('post/edit/{id}','PostController@edit')->name('admin.post.edit');
+
+    Route::post('post/edit/{id}','PostController@update')->name('admin.post.update');
+
+    Route::get('post/trash','PostController@trash')->name('admin.post.trash');
+
+    Route::post('post/{id}/restore','PostController@restore')->name('admin.post.restore');
+
+    Route::delete('post/trash/{id}','PostController@destroy')->name('admin.post.destroy');
+
+    Route::delete('post/destroy/{id}','PostController@deletePermanent')->name('admin.post.deletePermanent');
+
+    // Manage Blog Tag
     Route::get('tag','TagController@index')->name('admin.tag');
 
     Route::get('tag/create','TagController@create')->name('admin.tag.create');

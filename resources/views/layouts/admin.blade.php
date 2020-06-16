@@ -21,6 +21,8 @@
   {{-- Summernote CDN --}}
   <link href="{{ asset('admin/css/summernote.min.css') }}" rel="stylesheet">
 
+  {{-- Select2 Style CDN --}}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
   @yield('styles')
 
@@ -64,8 +66,8 @@
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ route('admin.general.edit') }}">Blog</a>
-            <a class="collapse-item" href="{{ route('admin.banner') }}">Trash</a>
+            <a class="collapse-item" href="{{ route('admin.post') }}">Blog</a>
+            <a class="collapse-item" href="{{ route('admin.post.trash') }}">Trash</a>
             <a class="collapse-item" href="{{ route('admin.tag') }}">Tag</a>
             <a class="collapse-item" href="{{ route('admin.category') }}">Category</a>
           </div>
@@ -257,7 +259,16 @@
 
   <script src="{{ asset('admin/js/summernote.min.js') }}"></script>
 
+  {{-- Select2 JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   
+  <script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Choose Some Tags"
+        });
+    });
+  </script>
   @stack('scripts')
 </body>
 

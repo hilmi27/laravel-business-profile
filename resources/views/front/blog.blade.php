@@ -57,7 +57,7 @@
 
               <div class="entry-content">
                 <p>
-                  {{ substr($post->body,0,200) }}....
+                  {!! $post->body,0,200 !!}
                 </p>
                 <div class="read-more">
                   <a href="{{route('blogshow',$post->slug)}}">Read More</a>
