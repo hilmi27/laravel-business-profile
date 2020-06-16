@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Category;
+use App\Tag;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::orderBy('id','desc')->get();
-        return view('admin.category.index',compact('category'));
+        $tag = Tag::orderBy('id','desc')->get();
+
+        return view('admin.tag.index',compact('tag'));
     }
 
     /**
@@ -26,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.tag.create');
     }
 
     /**
@@ -43,19 +44,19 @@ class CategoryController extends Controller
             "meta_desc" => "required"     
         ])->validate();
         
-        $category = new Category();
-        $category->name = $request->name;
-        $category->slug = \Str::slug($request->name);
-        $category->keyword = $request->keyword;
-        $category->meta_desc = $request->meta_desc;
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->slug = \Str::slug($request->name);
+        $tag->keyword = $request->keyword;
+        $tag->meta_desc = $request->meta_desc;
 
-        if ( $category->save()) {
+        if ( $tag->save()) {
 
-            return redirect()->route('admin.category')->with('success', 'Category added successfully');
+            return redirect()->route('admin.tag')->with('success', 'tag added successfully');
     
            } else {
                
-            return redirect()->route('admin.category')->with('error', 'category failed to add');
+            return redirect()->route('admin.tag')->with('error', 'tag failed to add');
     
            }
     }
@@ -79,9 +80,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-
-        return view('admin.category.edit',compact('category'));
+        $tag = Tag::findOrFail($id);
+        return view('admin.tag.edit',compact('tag'));
     }
 
     /**
@@ -98,20 +98,20 @@ class CategoryController extends Controller
             "keyword" => "required",
             "meta_desc" => "required"     
         ])->validate();
+        
+        $tag = Tag::findOrFail($id);
+        $tag->name = $request->name;
+        $tag->slug = \Str::slug($request->name);
+        $tag->keyword = $request->keyword;
+        $tag->meta_desc = $request->meta_desc;
 
-        $category = Category::findOrFail($id);
-        $category->name = $request->name;
-        $category->slug = \Str::slug($request->name);
-        $category->keyword = $request->keyword;
-        $category->meta_desc = $request->meta_desc;
+        if ( $tag->save()) {
 
-        if ( $category->save()) {
-
-            return redirect()->route('admin.category')->with('success', 'Category updated successfully');
+            return redirect()->route('admin.tag')->with('success', 'tag updated successfully');
     
            } else {
                
-            return redirect()->route('admin.category')->with('error', 'category failed to update');
+            return redirect()->route('admin.tag')->with('error', 'tag failed to update');
     
            }
     }
@@ -124,9 +124,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-
-        return redirect()->route('admin.category')->with('success', 'Category deleted successfully');
+        //
     }
 }

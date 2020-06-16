@@ -45,6 +45,32 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 
+    // Manage Blog Tag
+    Route::get('tag','TagController@index')->name('admin.tag');
+
+    Route::get('tag/create','TagController@create')->name('admin.tag.create');
+
+    Route::post('tag/create','TagController@store')->name('admin.tag.store');
+
+    Route::get('tag/edit/{id}','TagController@edit')->name('admin.tag.edit');
+
+    Route::post('tag/edit/{id}','TagController@update')->name('admin.tag.update');
+
+    Route::delete('tag/destroy/{id}','TagController@destroy')->name('admin.tag.destroy');
+
+    // Manage Blog Category
+    Route::get('category','CategoryController@index')->name('admin.category');
+
+    Route::get('category/create','CategoryController@create')->name('admin.category.create');
+
+    Route::post('category/create','CategoryController@store')->name('admin.category.store');
+
+    Route::get('category/edit/{id}','CategoryController@edit')->name('admin.category.edit');
+
+    Route::post('category/edit/{id}','CategoryController@update')->name('admin.category.update');
+
+    Route::delete('category/destroy/{id}','CategoryController@destroy')->name('admin.category.destroy');
+
     // Manage Banner
 
     Route::get('banner-slider','BannerController@index')->name('admin.banner');
