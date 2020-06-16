@@ -16,6 +16,8 @@ use App\General;
 use App\Post;
 use App\Category;
 use App\Tag;
+use App\Link;
+use App\Portofolio;
 
 class FrontController extends Controller
 {
@@ -33,9 +35,12 @@ class FrontController extends Controller
         $banner = Banner::all();
         $cover = Banner::first();
         $service = Service::all();
+        
         $general = General::find(1);
         $client = Client::get()->random(6);
-        return view('front.home',compact('banner','cover','service','client','general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.home',compact('banner','cover','service','client','general','link','services'));
     }
 
     public function about()
@@ -44,7 +49,9 @@ class FrontController extends Controller
         $faq = Faq::all();
         $about = About::find(1);
         $general = General::find(1);
-        return view('front.about',compact('team','faq','about','general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.about',compact('team','faq','about','general','link','services'));
     }
 
     public function service()
@@ -52,53 +59,74 @@ class FrontController extends Controller
         $service = Service::all();
         $feature = Feature::all();
         $general = General::find(1);
-        return view('front.service',compact('service','feature','general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.service',compact('service','feature','general','link','services'));
     }
 
     public function portofolio()
     {
         $general = General::find(1);
-        return view('front.portofolio',compact('general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        $portofolios = Portofolio::orderBy('id','desc')->get();
+        return view('front.portofolio',compact('general','link','services','portofolios'));
     }
 
-    public function portofolioshow()
+    public function portofolioshow($id)
     {
         $general = General::find(1);
-        return view('front.portofolioshow',compact('general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        $portofolio = Portofolio::findOrFail($id);
+        return view('front.portofolioshow',compact('general','link','services','portofolio'));
     }
 
     public function blog()
     {
         $general = General::find(1);
         $posts = Post::orderBy('id','desc')->paginate(12);
-        return view('front.blog',compact('general','posts'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.blog',compact('general','posts','link','services'));
     }
 
     public function blogshow($slug)
     {
         $general = General::find(1);
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('front.blogshow',compact('general','post'));
+        $categories = Category::get();
+        $tags = Tag::get();
+        $recent = Post::orderBy('id','desc')->limit(5)->get();
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.blogshow',compact('general','post','categories','tags','recent','link','services'));
     }
 
     public function category(Category $category)
     {
         $general = General::find(1);
         $posts = $category->posts()->latest()->paginate(12);
-        return view ('front.blog',compact('general','posts','category'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view ('front.blog',compact('general','posts','category','link','services'));
     }
 
     public function tag(Tag $tag)
     {
         $general = General::find(1);
         $posts = $tag->posts()->latest()->paginate(12);
-        return view ('front.blog',compact('general','posts','tag'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view ('front.blog',compact('general','posts','tag','link','services'));
     }
 
     public function contact()
     {
         $general = General::find(1);
-        return view('front.contact',compact('general'));
+        $link = Link::orderBy('id','asc')->get();
+        $services = Service::orderBy('title','asc')->get();
+        return view('front.contact',compact('general','link','services'));
     }
 
     public function subscribe(Request $request)

@@ -41,7 +41,7 @@
             <article class="entry">
 
               <div class="entry-img">
-                <img src="assets/img/blog-1.jpg" alt="" class="img-fluid">
+                <img src="{{asset('storage/' . $post->cover)}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -57,7 +57,8 @@
 
               <div class="entry-content">
                 <p>
-                  {!! $post->body,0,200 !!}
+                  {{-- {!! $post->body !!} --}}
+                  {{ Str::limit( strip_tags( $post->body ), 100 ) }}
                 </p>
                 <div class="read-more">
                   <a href="{{route('blogshow',$post->slug)}}">Read More</a>

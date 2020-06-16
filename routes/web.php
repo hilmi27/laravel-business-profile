@@ -21,7 +21,7 @@ Route::get('service','FrontController@service')->name('service');
 
 Route::get('portofolio','FrontController@portofolio')->name('portofolio');
 
-Route::get('portofolio/test-portofolio-show','FrontController@portofolioshow')->name('portofolio.show');
+Route::get('portofolio/{id}','FrontController@portofolioshow')->name('portofolio.show');
 
 Route::get('blog','FrontController@blog')->name('blog');
 
@@ -186,5 +186,32 @@ Route::prefix('admin')->middleware('auth')->group(function () {
      Route::get('general/edit','GeneralController@edit')->name('admin.general.edit');
  
      Route::post('general/edit','GeneralController@update')->name('admin.general.update');
+
+      // Manage Link
+    Route::get('link','LinkController@index')->name('admin.link');
+
+    Route::get('link/create','LinkController@create')->name('admin.link.create');
+
+    Route::post('link/create','LinkController@store')->name('admin.link.store');
+
+    Route::get('link/edit/{id}','LinkController@edit')->name('admin.link.edit');
+
+    Route::post('link/edit/{id}','LinkController@update')->name('admin.link.update');
+
+    Route::delete('link/destroy/{id}','LinkController@destroy')->name('admin.link.destroy');
+
+    // Manage Portofolio
+
+    Route::get('portofolio','PortofolioController@index')->name('admin.portofolio');
+
+    Route::get('portofolio/create','PortofolioController@create')->name('admin.portofolio.create');
+
+    Route::post('portofolio/create','PortofolioController@store')->name('admin.portofolio.store');
+
+    Route::get('portofolio/edit/{id}','PortofolioController@edit')->name('admin.portofolio.edit');
+
+    Route::post('portofolio/edit/{id}','PortofolioController@update')->name('admin.portofolio.update');
+
+    Route::delete('portofolio/destroy/{id}','PortofolioController@destroy')->name('admin.portofolio.destroy');
 
 });

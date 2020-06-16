@@ -111,6 +111,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.portofolio') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Portofolio</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Settings</span>
@@ -119,6 +125,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.general.edit') }}">General Settings</a>
             <a class="collapse-item" href="{{ route('admin.banner') }}">Banner Slider</a>
+            <a class="collapse-item" href="{{ route('admin.link') }}">Link Useful</a>
             <a class="collapse-item" href="{{ route('admin.about.edit') }}">About</a>
           </div>
         </div>

@@ -47,25 +47,26 @@
         <div class="row">
 
           <div class="col-lg-8">
-            <h2 class="portfolio-title">This is an example of portfolio detail</h2>
+            <h2 class="portfolio-title">This is portfolio detail</h2>
             <div class="owl-carousel portfolio-details-carousel">
-              <img src="{{ asset('assets/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
-              <img src="{{ asset('assets/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
-              <img src="{{ asset('assets/img/portfolio/portfolio-details-3.jpg') }}" class="img-fluid" alt="">
+              @foreach ($portofolio->galleries as $gallery)
+              <img src="{{asset('storage/' . $gallery->photo)}}" class="img-fluid" alt="">
+              @endforeach
+              
             </div>
           </div>
 
           <div class="col-lg-4 portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong>: Web design</li>
-              <li><strong>Client</strong>: ASU Company</li>
-              <li><strong>Project date</strong>: 01 March, 2020</li>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              <li><strong>Category</strong>: {{ $portofolio->category }}</li>
+              <li><strong>Client</strong>:{{$portofolio->client}}</li>
+              <li><strong>Project date</strong>: {{ Carbon\Carbon::parse($portofolio->project_date)->format("d F, Y") }}</li>
+              <li><strong>Project URL</strong>: <a href="{{ $portofolio->project_url }}" target="_blank">{{ $portofolio->project_url }}</a></li>
             </ul>
 
             <p>
-              Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+              {!! $portofolio->desc !!}
             </p>
           </div>
 
