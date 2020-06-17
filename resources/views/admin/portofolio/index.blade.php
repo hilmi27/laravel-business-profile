@@ -84,13 +84,14 @@
                 
                             <a href="{{route('admin.portofolio.edit', [$portofolio->id])}}" class="btn btn-info btn-sm"> Edit </a>
                 
-                            <form method="portofolio" class="d-inline" onsubmit="return confirm('Move portofolio to trash ?')" action="{{route('admin.portofolio.destroy', $portofolio->id)}}">
+                            <form method="POST" action="{{route('admin.portofolio.destroy', [$portofolio->id])}}" class="d-inline" onsubmit="return confirm('Delete this portofolio permanently?')">
+                
                                 @csrf
-    
-                                <input type="hidden" value="DELETE" name="_method">
-    
-                                <input type="submit" value="Trash" class="btn btn-danger btn-sm">
-    
+                
+                                <input type="hidden" name="_method" value="DELETE">
+                
+                                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                
                             </form>
                 
                         </td>

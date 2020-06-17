@@ -106,7 +106,9 @@ class PortofolioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $portofolio = Portofolio::findOrFail($id);
+
+        return view('admin.portofolio.edit',compact('portofolio'));
     }
 
     /**
@@ -129,6 +131,12 @@ class PortofolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Portofolio::findOrFail($id);
+        
+        // $data->galleries()->detach();
+
+        $data->forceDelete();
+
+        return redirect()->route('admin.portofolio')->with('success', 'Portofolio deleted successfully');
     }
 }

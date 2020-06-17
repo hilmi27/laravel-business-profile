@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{{ $general->title }}</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
+  <title>@yield('title') {{ $general->title }}</title>
+  <meta content="{{ $general->meta_desc }}" name="descriptison">
+  <meta content="{{ $general->keyword }}" name="keywords">
+  @yield('meta')
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('storage/' . $general->favicon)}}" rel="icon">
   <link href="{{ asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->

@@ -73,7 +73,7 @@ class GeneralController extends Controller
     public function update(Request $request)
     {
         \Validator::make($request->all(), [
-            "favicon" => "required",
+     
             "name" => "required",
             "title" => "required",
             "address" => "required",
@@ -94,7 +94,9 @@ class GeneralController extends Controller
         $general->instagram = $request->instagram;
         $general->linkedin = $request->linkedin;
         $general->footer = $request->footer;
-        $request->gmaps = $request->gmaps;
+        $general->gmaps = $request->gmaps;
+        $general->keyword = $request->keyword;
+        $general->meta_desc = $request->meta_desc;
 
         $new_logo = $request->file('logo');
 

@@ -64,7 +64,7 @@
 </div>
 @endif
 
-<form action="{{ route('admin.portofolio.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.portofolio.update',$portofolio->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="container">
@@ -75,7 +75,7 @@
     
                 <div class="picture">
     
-                    <img src="" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
+                    <img src="{{asset('storage/' . $portofolio->cover)}}" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
     
                     <input type="file" id="wizard-picture" name="cover" class="form-control {{$errors->first('cover') ? "is-invalid" : "" }} ">
     
@@ -91,24 +91,13 @@
     
         </div>
 
-        {{-- <div class="form-group ml-5">
-            <label>Gallery</label>
-            <div class="files col-md-3">
-                <input type="file" name="photo[]">
-            </div>
-        </div>
-
-        <div class="form-group ml-5 form-actions">
-            <button type="button" class="add-file btn btn-success">Add New File</button>
-        </div> --}}
-
         <div class="form-group ml-5">
             <label class="col-sm-3 control-label">
                Gallery
             </label>
             <div class="col-sm-9">
                 <span class="btn btn-default btn-file">
-                    <input id="input-2" name="photo[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
+                    <input id="input-2" name="photo[]"  type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
                 </span>
             </div>
         </div>
@@ -120,7 +109,7 @@
 
             <div class="col-sm-7">
 
-                <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name')}}" id="name" placeholder="Project Name">
+                <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name') ? old('name') : $portofolio->name}}" id="name" placeholder="Project Name">
 
                 <div class="invalid-feedback">
                     {{ $errors->first('name') }}    
@@ -136,7 +125,7 @@
 
             <div class="col-sm-7">
 
-                <input type="text" name='category' class="form-control {{$errors->first('category') ? "is-invalid" : "" }} " value="{{old('category')}}" id="category" placeholder="Project Category">
+                <input type="text" name='category' class="form-control {{$errors->first('category') ? "is-invalid" : "" }} " value="{{old('category') ? old('category') : $portofolio->category}}" id="category" placeholder="Project Category">
 
                 <div class="invalid-feedback">
                     {{ $errors->first('category') }}    
@@ -152,7 +141,7 @@
 
             <div class="col-sm-7">
 
-                <input type="text" name='client' class="form-control {{$errors->first('client') ? "is-invalid" : "" }} " value="{{old('client')}}" id="client" placeholder="Client">
+                <input type="text" name='client' class="form-control {{$errors->first('client') ? "is-invalid" : "" }} " value="{{old('client') ? old('client') : $portofolio->client}}" id="client" placeholder="Client">
 
                 <div class="invalid-feedback">
                     {{ $errors->first('client') }}    
@@ -169,7 +158,7 @@
 
             <div class="col-sm-7">
 
-                <input type="date" name='project_date' class="form-control {{$errors->first('project_date') ? "is-invalid" : "" }} " value="{{old('project_date')}}" id="project_date" placeholder="Client">
+                <input type="date" name='project_date' class="form-control {{$errors->first('project_date') ? "is-invalid" : "" }} " value="{{old('project_date') ? old('project_date') : $portofolio->project_date}}" id="project_date" placeholder="Client">
 
                 <div class="invalid-feedback">
                     {{ $errors->first('project_date') }}    
@@ -185,7 +174,7 @@
 
             <div class="col-sm-7">
 
-                <input type="text" name='project_url' class="form-control {{$errors->first('project_url') ? "is-invalid" : "" }} " value="{{old('project_url')}}" id="project_url" placeholder="URL">
+                <input type="text" name='project_url' class="form-control {{$errors->first('project_url') ? "is-invalid" : "" }} " value="{{old('project_url') ? old('project_url') : $portofolio->project_url}}" id="project_url" placeholder="URL">
 
                 <div class="invalid-feedback">
                     {{ $errors->first('project_url') }}    
@@ -203,7 +192,7 @@
 
             <div class="col-sm-8">
 
-                <textarea name="desc" class="form-control {{$errors->first('desc') ? "is-invalid" : "" }} "  id="summernote" cols="30" rows="10">{{old('desc')}}</textarea>
+                <textarea name="desc" class="form-control {{$errors->first('desc') ? "is-invalid" : "" }} "  id="summernote" cols="30" rows="10">{{old('desc') ? old('desc') : $portofolio->desc}}</textarea>
                 <div class="invalid-feedback">
                     {{ $errors->first('desc') }}    
                 </div>   

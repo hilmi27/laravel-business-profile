@@ -1,5 +1,16 @@
 @extends('layouts.front')
 
+@section('title')
+{{ $post->title }} - 
+@endsection
+@section('meta')
+<meta name="author" content="{{ $general->name }}"/>
+<meta property="og:site_name" content="{{ $general->name }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="{{ $post->title }}"/>
+<meta property="og:description" content="{{ $post->meta_desc }}"/>
+<meta property="og:url" content="https://bwxindo.id"/>
+@endsection
 @section('content')
 <main id="main">
 

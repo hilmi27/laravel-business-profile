@@ -275,6 +275,38 @@
             </div>
 
         </div>
+
+        <div class="form-group ml-5">
+
+            <label for="keyword" class="col-sm-2 col-form-label">Keyword</label>
+
+            <div class="col-sm-7">
+
+                <input type="text" name='keyword' class="form-control {{$errors->first('keyword') ? "is-invalid" : "" }} " value="{{old('keyword') ? old('keyword') : $general->keyword}}" id="keyword" placeholder="Keyword">
+
+                <div class="invalid-feedback">
+                    {{ $errors->first('keyword') }}    
+                </div>   
+
+            </div>
+
+        </div>
+
+        <div class="form-group ml-5">
+
+            <label for="meta_desc" class="col-sm-2 col-form-label">Meta Desc</label>
+
+            <div class="col-sm-7">
+
+                <input type="text" name='meta_desc' class="form-control {{$errors->first('meta_desc') ? "is-invalid" : "" }} " value="{{old('meta_desc') ? old('meta_desc') : $general->meta_desc}}" id="meta_desc" placeholder="Meta Description">
+
+                <div class="invalid-feedback">
+                    {{ $errors->first('meta_desc') }}    
+                </div>   
+
+            </div>
+
+        </div>
    
         <div class="form-group ml-5">
    
